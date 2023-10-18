@@ -1,6 +1,7 @@
 package com.devsu.client.services;
 
 import com.devsu.client.models.Client;
+import com.devsu.client.models.Person;
 import com.devsu.client.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class ClientService {
     @PostMapping
     public Client createClient(@Validated @RequestBody Client newClient){
         System.out.println("Client: ");
-        System.out.println(newClient.toString());
+        System.out.println(newClient);
         return this.clientRepository.save(newClient);
     }
 

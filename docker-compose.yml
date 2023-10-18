@@ -1,6 +1,20 @@
 version: '2'
 
 services:
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    ports:
+      - "3000:5432"
+    volumes:
+        - postgres-data:/var/lib/postgresql/data
+        - ./BaseDatos.sql:/docker-entrypoint-initdb.d/db.sql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES=client_db,account_db
+
   client:
     image: 'devsu-client:latest'
     build:
@@ -31,17 +45,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
           
-  db:
-    image: 'postgres:13.1-alpine'
-    container_name: db
-    
-    volumes:
-        - postgres-data:/var/lib/postgresql/data
-        - ./BaseDatos.sql:/docker-entrypoint-initdb.d/db.sql
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_MULTIPLE_DATABASES=client_db,account_db
+
 
 volumes:
   postgres-data:

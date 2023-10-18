@@ -3,12 +3,8 @@ package com.devsu.client.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "clients")
-public class Client {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long clientid;
+@PrimaryKeyJoinColumn(name = "client_id")
+public class Client extends Person {
 
     @Column
     private String password;
@@ -18,5 +14,21 @@ public class Client {
     @Override
     public String toString() {
         return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
