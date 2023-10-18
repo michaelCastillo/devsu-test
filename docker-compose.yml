@@ -1,22 +1,47 @@
 version: '2'
 
 services:
-  app:
-    image: 'devsu-test:latest'
+  client:
+    image: 'devsu-client:latest'
     build:
       context: .
-    container_name: app
+    container_name: client
+    ports:
+      - "8080:8080"
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
-      - SPRING_DATASOURCE_USERNAME=compose-postgres
-      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  account:
+    image: 'devsu-account:latest'
+    build:
+      context: .
+    container_name: account
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
           
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
+    
+    volumes:
+        - postgres-data:/var/lib/postgresql/data
+        - ./BaseDatos.sql:/docker-entrypoint-initdb.d/db.sql
     environment:
-      - POSTGRES_USER=compose-postgres
-      - POSTGRES_PASSWORD=compose-postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES=client_db,account_db
+
+volumes:
+  postgres-data:

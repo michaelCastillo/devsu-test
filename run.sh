@@ -1,4 +1,11 @@
-APP_NAME="devsu-test"
+APP_ACCOUNT_NAME="devsu-account"
+APP_CLIENT_NAME="devsu-client"
+cd ./account
+./gradlew build
+cd ../client
+./gradlew build
+cd ..
+docker build -t $APP_ACCOUNT_NAME ./account
+docker build -t $APP_CLIENT_NAME ./client
 
-docker build -t $APP_NAME .
-docker run -p 8080:8080 $APP_NAME
+docker-compose up

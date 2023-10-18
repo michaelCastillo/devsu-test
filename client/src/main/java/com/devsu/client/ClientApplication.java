@@ -1,14 +1,13 @@
-package com.test.account;
+package com.devsu.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AccountApplication {
+public class ClientApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Hello world");
-		SpringApplication.run(AccountApplication.class, args);
+		SpringApplication.run(ClientApplication.class, args);
 	}
 
 }
