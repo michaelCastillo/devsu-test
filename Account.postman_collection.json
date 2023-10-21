@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "6fed7051-d26b-4958-8e16-306cf76f0a28",
+		"name": "Account",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\":\"Type 1\",\n    \"initial_balance\":100,\n    \"status\":\"Test\",\n    \"movements\":[]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{accountHost}}/account",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{accountHost}}/account",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movements",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{accountHost}}/movement",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"movement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create movement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2023-10-18T21:47:51.063+00:00\",\n    \"ammount\":10,\n    \"balance\":123,\n    \"account\":{\n        \"account_number\": \"7ae14a32-9ba4-4f62-b438-a1d163ade3cb\",\n        \"type\": \"test\",\n        \"initial_balance\": 10,\n        \"status\": \"test\",\n        \"movements\": []\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{accountHost}}/movement",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"movement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit account.",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\":\"test\",\n    \"initial_balance\":10,\n    \"status\":\"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{accountHost}}/account",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit movement",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2020/01/01\",\n    \"ammount\":10,\n    \"balance\":{{$randomDateRecent}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{accountHost}}/movement",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"movement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete movement",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{accountHost}}/movement/1",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"movement",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{accountHost}}/account/7ae14a32-9ba4-4f62-b438-a1d163ade3cb",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"account",
+						"7ae14a32-9ba4-4f62-b438-a1d163ade3cb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create movement error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2020/01/01\",\n    \"ammount\":10,\n    \"balance\":123\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{accountHost}}/movement",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"movement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movements for report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{accountHost}}/movement",
+					"host": [
+						"{{accountHost}}"
+					],
+					"path": [
+						"movement"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
